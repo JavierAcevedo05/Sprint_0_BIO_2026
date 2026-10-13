@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Beacon - Tests de la UX</title>
+	<style>
+		/* los estilos básicos de la app, para poder probar el centrado */
+		html, body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background-color: #ffffff;
+		}
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#textoCodigo {
+			font-family: sans-serif;
+			font-size: 2em;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- ---------------------------------------------------- -->
+	<!-- ---------------------------------------------------- -->
+	<!-- el mismo elemento que usa la app -->
+	<div id="textoCodigo"></div>
+	<div id="resultados"></div>
+
+	<script src="../ux/logicaFake/consultarUltimoCodigo.js"></script>
+	<script src="../ux/Aplicacion.js"></script>
+
+	<!-- ---------------------------------------------------- -->
+	<!-- ---------------------------------------------------- -->
+	<script>
+		// ---------------------------------------------------
+		//
+		// recuento y salida de los tests
+		//
+		// ---------------------------------------------------
+		var testsCorrectos = 0;
+		var testsTotal = 0;
+
+		function test( nombre, condicion ) {
+			testsTotal++;
+			if ( condicion ) {
+				testsCorrectos++;
+				console.log( "OK: " + nombre );
+			} else {
+				console.log( "FALLO: " + nombre );
+			}
+			document.getElementById( "resultados" ).innerHTML +=
+				( condicion ? "OK: " : "FALLO: " ) + nombre + "<br>";
+		}
+
+		// ---------------------------------------------------
+		// 1. estado inicial: antes de la respuesta
+		// ---------------------------------------------------
+		var callbackPendiente = null;
+		consultarUltimoCodigo = function( cb ) {
+			callbackPendiente = cb; // no responde todavía
+		};
+		cargarAplicacion();
+		test( "estado inicial",
+			document.getElementById( "textoCodigo" ).textContent === "Consultando..." );
+
+		// ---------------------------------------------------
+		// 2. pintado del código (la fake devuelve el código)
+		// ---------------------------------------------------
+		consultarUltimoCodigo = function( cb ) {
+			cb( null, { valor: 1234, fecha: "2026-10-13 12:00:00" } );
+		};
+		cargarAplicacion();
+		test( "pintado del código",
+			document.getElementById( "textoCodigo" ).textContent === "Código: 1234" );
+
+		// ---------------------------------------------------
+		// 3. ausencia de código (la fake devuelve error)
+		// ---------------------------------------------------
+		consultarUltimoCodigo = function( cb ) {
+			cb( "no hay códigos guardados", null );
+		};
+		cargarAplicacion();
+		test( "ausencia de código",
+			document.getElementById( "textoCodigo" ).textContent === "No hay código" );
+
+		// ---------------------------------------------------
+		// 4. el texto está centrado horizontal y verticalmente
+		// ---------------------------------------------------
+		var estilo = window.getComputedStyle( document.body );
+		var centradoH = estilo.display === "flex" && estilo.justifyContent === "center";
+		var centradoV = estilo.alignItems === "center";
+		test( "texto centrado", centradoH && centradoV );
+
+		// ---------------------------------------------------
+		// recuento final
+		// ---------------------------------------------------
+		console.log( "\n" + testsCorrectos + "/" + testsTotal + " tests correctos" );
+		document.getElementById( "resultados" ).innerHTML +=
+			"<br>" + testsCorrectos + "/" + testsTotal + " tests correctos";
+	</script>
+
+</body>
+</html>

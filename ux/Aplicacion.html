@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Beacon - Consulta de código</title>
+	<style>
+		/* fondo blanco, sin menú ni cabecera */
+		html, body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background-color: #ffffff;
+		}
+		/* el texto queda centrado horizontal y verticalmente */
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#textoCodigo {
+			font-family: sans-serif;
+			font-size: 2em;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- ---------------------------------------------------- -->
+	<!-- ---------------------------------------------------- -->
+	<div id="textoCodigo"></div>
+
+	<script src="logicaFake/consultarUltimoCodigo.js"></script>
+	<script src="Aplicacion.js"></script>
+
+	<!-- ---------------------------------------------------- -->
+	<!-- ---------------------------------------------------- -->
+	<script>
+		// al cargar la página, consulta y pinta el código
+		cargarAplicacion();
+	</script>
+
+</body>
+</html>
