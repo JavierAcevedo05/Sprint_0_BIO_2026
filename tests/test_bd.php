@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------
 //
-// Tests de la base de datos (bd/crear_bd.sql)
+// Tests de la base de datos (src/database/crear_bd.sql)
 // Ejecutar con: php tests/test_bd.php
 //
 // ----------------------------------------------------------
@@ -56,7 +56,7 @@ function conexionServidor() {
 function prepararBaseDeDatos() {
 
     $servidor = conexionServidor();
-    $sql = file_get_contents(__DIR__ . "/../bd/crear_bd.sql");
+    $sql = file_get_contents(__DIR__ . "/../src/database/crear_bd.sql");
 
     $servidor->multi_query($sql);
     while ($servidor->more_results()) {

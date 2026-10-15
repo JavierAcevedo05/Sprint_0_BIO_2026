@@ -3,7 +3,7 @@
 // ----------------------------------------------------------
 //
 // Tests del servidor REST
-// (rest/guardarCodigo.php y rest/consultarCodigo.php)
+// (src/communication/guardarCodigo.php y src/communication/consultarCodigo.php)
 //
 // Hacen peticiones HTTP reales, así que requieren tener el
 // servidor arrancado. Por ejemplo, desde la carpeta del proyecto:
@@ -16,7 +16,7 @@
 //
 // ----------------------------------------------------------
 
-require_once __DIR__ . "/../logica/config.php";
+require_once __DIR__ . "/../src/business_logic/config.php";
 
 $BASE_URL = "http://localhost:8080";
 
@@ -93,7 +93,7 @@ function limpiarTabla() {
 }
 
 // comprobamos que el servidor responde antes de empezar
-if (peticion("GET", "/rest/consultarCodigo.php") === null) {
+if (peticion("GET", "/src/communication/consultarCodigo.php") === null) {
     echo "El servidor no responde en $BASE_URL.\n";
     echo "Arranca el servidor con: php -S localhost:8080 -t .\n";
     exit(1);
@@ -105,7 +105,7 @@ limpiarTabla();
 // ----------------------------------------------------------
 // 1. guardar por POST con un valor válido
 // ----------------------------------------------------------
-$resultado = peticion("POST", "/rest/guardarCodigo.php", json_encode(array("valor" => 1234)));
+$resultado = peticion("POST", "/src/communication/guardarCodigo.php", json_encode(array("valor" => 1234)));
 test("guardar por POST con valor válido",
     is_array($resultado) && isset($resultado["resultado"]) && $resultado["resultado"] === true,
     "no devolvió resultado:true");
@@ -113,7 +113,7 @@ test("guardar por POST con valor válido",
 // ----------------------------------------------------------
 // 2. guardar por POST con un valor fuera de rango
 // ----------------------------------------------------------
-$resultado = peticion("POST", "/rest/guardarCodigo.php", json_encode(array("valor" => 70000)));
+$resultado = peticion("POST", "/src/communication/guardarCodigo.php", json_encode(array("valor" => 70000)));
 test("guardar por POST con valor fuera de rango",
     is_array($resultado) && isset($resultado["resultado"]) && $resultado["resultado"] === false,
     "no devolvió resultado:false");
@@ -121,7 +121,7 @@ test("guardar por POST con valor fuera de rango",
 // ----------------------------------------------------------
 // 3. guardar con el cuerpo mal formado
 // ----------------------------------------------------------
-$resultado = peticion("POST", "/rest/guardarCodigo.php", "{ esto no es json ");
+$resultado = peticion("POST", "/src/communication/guardarCodigo.php", "{ esto no es json ");
 test("guardar con el cuerpo mal formado",
     is_array($resultado) && isset($resultado["resultado"]) && $resultado["resultado"] === false,
     "no devolvió resultado:false");
@@ -129,7 +129,7 @@ test("guardar con el cuerpo mal formado",
 // ----------------------------------------------------------
 // 4. consultar -> devuelve valor, fecha y error
 // ----------------------------------------------------------
-$resultado = peticion("GET", "/rest/consultarCodigo.php");
+$resultado = peticion("GET", "/src/communication/consultarCodigo.php");
 test("consultar devuelve valor, fecha y error",
     is_array($resultado)
         && isset($resultado["valor"]) && $resultado["valor"] == 1234
@@ -141,7 +141,7 @@ test("consultar devuelve valor, fecha y error",
 // 5. consultar con la BD vacía -> error de texto
 // ----------------------------------------------------------
 limpiarTabla();
-$resultado = peticion("GET", "/rest/consultarCodigo.php");
+$resultado = peticion("GET", "/src/communication/consultarCodigo.php");
 test("consultar con la BD vacía devuelve error",
     is_array($resultado) && isset($resultado["error"]) && $resultado["error"] == "no hay códigos guardados",
     "no devolvió el error de texto");

@@ -67,7 +67,7 @@ function consultarUltimoCodigo( cb ) {
 	};
 
 	// llamamos *remotamente* al fichero consultarCodigo.php
-	xhr.open( "GET", "../rest/consultarCodigo.php", true );
+	xhr.open( "GET", "../communication/consultarCodigo.php", true );
 	xhr.send();
 
 } // ()

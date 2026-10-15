@@ -3,13 +3,13 @@
 // ----------------------------------------------------------
 //
 // Tests de la lógica de negocio
-// (logica/guardarCodigo.php y logica/consultarUltimoCodigo.php)
+// (src/business_logic/guardarCodigo.php y src/business_logic/consultarUltimoCodigo.php)
 // Ejecutar con: php tests/test_logica.php
 //
 // ----------------------------------------------------------
 
-require_once __DIR__ . "/../logica/guardarCodigo.php";
-require_once __DIR__ . "/../logica/consultarUltimoCodigo.php";
+require_once __DIR__ . "/../src/business_logic/guardarCodigo.php";
+require_once __DIR__ . "/../src/business_logic/consultarUltimoCodigo.php";
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 

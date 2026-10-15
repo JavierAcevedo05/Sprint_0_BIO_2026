@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__ . "/../logica/guardarCodigo.php";
+require_once __DIR__ . "/../business_logic/guardarCodigo.php";
 
 // ----------------------------------------------------------
 //
-// POST ../rest/guardarCodigo.php
+// POST /src/communication/guardarCodigo.php
 // cuerpo JSON: {"valor":Entero}
 //
 // valor:Entero -> guardarCodigo() -> bool | error:Texto

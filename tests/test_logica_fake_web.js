@@ -1,7 +1,7 @@
 // ----------------------------------------------------------
 //
 // Tests de la lógica fake del navegador
-// (ux/logicaFake/consultarUltimoCodigo.js)
+// (src/frontend_business_logic/consultarUltimoCodigo.js)
 //
 // Ejecutar con:
 //   node tests/test_logica_fake_web.js
@@ -11,7 +11,7 @@
 //
 // ----------------------------------------------------------
 
-var logica = require("../ux/logicaFake/consultarUltimoCodigo.js");
+var logica = require("../src/frontend_business_logic/consultarUltimoCodigo.js");
 
 var testsCorrectos = 0;
 var testsTotal = 0;

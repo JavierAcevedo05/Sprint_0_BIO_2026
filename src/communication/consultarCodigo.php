@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__ . "/../logica/consultarUltimoCodigo.php";
+require_once __DIR__ . "/../business_logic/consultarUltimoCodigo.php";
 
 // ----------------------------------------------------------
 //
-// GET ../rest/consultarCodigo.php
+// GET /src/communication/consultarCodigo.php
 // (sin parámetros)
 //
 // -> consultarUltimoCodigo() -> (valor:Entero, fecha:Fecha) | error:Texto
