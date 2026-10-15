@@ -1,6 +1,6 @@
 # Diseño del Componente — BASE DE DATOS (`database_design.md`)
 
-## 1. Diseño del Componente
+## 1. Component Design (Diseño del Componente)
 
 Base de datos relacional MySQL llamada `bd_codigos`. Guarda los códigos que el
 móvil envía al servidor tras detectar el beacon. Cada envío es una fila nueva:
@@ -30,7 +30,7 @@ CONSTRAINTS:
 ====================================================================================
 ```
 
-## 2. Aclaraciones del Diseño
+## 2. Design Clarifications (Aclaraciones del Diseño)
 
 - `id` es la clave primaria y autoincrementa; identifica de forma unívoca cada envío y
   define cuál es el "último código".
@@ -40,7 +40,7 @@ CONSTRAINTS:
 - No hay claves ajenas: es una única tabla.
 - El motor es InnoDB y el juego de caracteres `utf8mb4`.
 
-## 3. Reglas Generales
+## 3. General Rules (Reglas Generales)
 
 - **Lenguaje de programación:** SQL (MySQL 8 / MariaDB de XAMPP).
 - **Encabezados:** el script de creación de la tabla lleva un bloque de comentario

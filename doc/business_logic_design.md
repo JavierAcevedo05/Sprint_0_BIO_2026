@@ -1,11 +1,11 @@
 # Diseño del Componente — LÓGICA DE NEGOCIO DEL BACKEND (`business_logic_design.md`)
 
-## 1. Diseño del Componente
+## 1. Component Design (Diseño del Componente)
 
 La lógica de negocio es la capa que decide si un código es válido, lo guarda en la
-base de datos y lo consulta. Está **completamente desacoplada** de la comunicación:
-no conoce HTTP, ni peticiones, ni respuestas ni códigos de estado. Sólo trabaja con
-tipos de dominio.
+base de datos y lo consulta. Está **completamente desacoplada** de la capa de
+comunicación y de la red: sólo trabaja con tipos de dominio y con el esquema de la
+base de datos.
 
 Tipos usados (según `context/Software_Engineering_Spec.md`):
 
@@ -54,7 +54,7 @@ definida en `database_design.md`:
 La capa obtiene la conexión a la base de datos a través de una función de acceso
 (`getConexion()`), que devuelve un recurso de conexión al esquema de `database_design.md`.
 
-## 2. Aclaraciones del Diseño
+## 2. Design Clarifications (Aclaraciones del Diseño)
 
 - Regla de negocio: un código válido es un entero entre `0` y `65535`. Todo lo demás
   se rechaza devolviendo `false` y **sin insertar ninguna fila**.
@@ -64,14 +64,14 @@ La capa obtiene la conexión a la base de datos a través de una función de acc
   (objeto agregado, estructura o tupla) la decide la implementación, pero su **firma
   lógica** es la indicada arriba.
 
-## 2.bis Resumen de la API lógica
+### Resumen de la API lógica
 
 | Operación | Entrada | Salida |
 | --- | --- | --- |
 | `guardarCodigo` | `valor: Z` | `B` |
 | `consultarUltimoCodigo` | — | `Codigo` \| `error: Text` |
 
-## 3. Reglas Generales
+## 3. General Rules (Reglas Generales)
 
 - **Lenguaje de programación:** PHP.
 - **Encabezados:** cada función incluye su diseño lógico dentro de un bloque de
@@ -81,5 +81,5 @@ La capa obtiene la conexión a la base de datos a través de una función de acc
 - **Pruebas automatizadas:** se generan pruebas para los métodos críticos: código válido,
   rechazo de inválidos, almacenamiento correcto, consulta correcta y registro de la fecha
   (`src/business_logic` → probadas por `tests/test_logica.php`).
-- **Independencia de comunicación:** prohibido referenciar transporte (HTTP, JSON, rutas,
-  cabeceras o sockets) en esta capa.
+- **Independencia de comunicación:** esta capa no puede depender de la capa de
+  comunicación ni de la red; sólo de la base de datos (`database_design.md`).

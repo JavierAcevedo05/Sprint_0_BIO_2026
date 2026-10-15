@@ -1,6 +1,6 @@
 # Diseño del Componente — LÓGICA DE NEGOCIO DEL CLIENTE / FRONTEND (`frontend_business_logic_design.md`)
 
-## 1. Diseño del Componente
+## 1. Component Design (Diseño del Componente)
 
 Lógica de negocio del cliente para la web. Presenta a la GUI **la misma interfaz
 limpia de dominio** que la lógica de negocio del backend, pero su implementación es
@@ -32,7 +32,7 @@ GET ../communication/consultarCodigo.php
    SÍ                        --> cb( null, resultado )
 ```
 
-## 2. Aclaraciones del Diseño
+## 2. Design Clarifications (Aclaraciones del Diseño)
 
 - El "fake" encapsula la comunicación: la GUI ve sólo `consultarUltimoCodigo()`.
 - El `XMLHttpRequest` se obtiene a través de `crearXHR()`, para que los tests puedan
@@ -41,7 +41,7 @@ GET ../communication/consultarCodigo.php
   manteniendo el desacoplamiento de la ubicación del backend.
 - Se admiten errores del servidor (código no válido) y fallos de red/HTTP.
 
-## 3. Reglas Generales
+## 3. General Rules (Reglas Generales)
 
 - **Lenguaje de programación:** JavaScript (navegador).
 - **Encabezados:** cada función lleva un bloque de comentario delimitado por líneas

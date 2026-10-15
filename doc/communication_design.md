@@ -1,6 +1,6 @@
 # Diseño del Componente — COMUNICACIÓN / SERVIDOR REST (`communication_design.md`)
 
-## 1. Diseño del Componente
+## 1. Component Design (Diseño del Componente)
 
 Componente de comunicación del backend. Expone los puntos de entrada externos por
 HTTP (REST) que usan el móvil (para enviar el código) y la web (para consultarlo).
@@ -43,7 +43,7 @@ valor: Z --> guardarCodigo() --> B                  (POST)
          --> consultarUltimoCodigo() --> Codigo | error: Text   (GET)
 ```
 
-## 2. Aclaraciones del Diseño
+## 2. Design Clarifications (Aclaraciones del Diseño)
 
 - Se usa **POST** para enviar un código y **GET** para consultar.
 - El nombre de cada fichero REST coincide con el de la operación de la lógica.
@@ -51,7 +51,7 @@ valor: Z --> guardarCodigo() --> B                  (POST)
   devuelve `false`; la comunicación sólo informa del resultado.
 - La comunicación es la **única** capa que conoce HTTP y JSON.
 
-## 3. Reglas Generales
+## 3. General Rules (Reglas Generales)
 
 - **Lenguaje de programación:** PHP.
 - **Encabezados:** cada endpoint lleva un bloque de comentario delimitado por líneas

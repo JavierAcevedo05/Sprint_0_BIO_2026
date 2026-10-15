@@ -4,7 +4,7 @@
 > revisión del agente. Este documento sólo describe textualmente la pantalla, tal
 > como se pide.
 
-## 1. Diseño del Componente
+## 1. Component Design (Diseño del Componente)
 
 Una única página (`src/gui/Aplicacion.html`) con fondo blanco, sin menú ni cabecera,
 con un texto centrado horizontal y verticalmente que muestra el código consultado.
@@ -33,7 +33,7 @@ Responsabilidades de la GUI:
 La GUI **no** hace HTTP: al cargar, llama a `consultarUltimoCodigo()` de
 `src/frontend_business_logic` y pinta el resultado.
 
-## 2. Aclaraciones del Diseño
+## 2. Design Clarifications (Aclaraciones del Diseño)
 
 - El CSS va en un `<style>` dentro del propio HTML; charset UTF-8 y título
   "Beacon - Consulta de código".
@@ -41,7 +41,7 @@ La GUI **no** hace HTTP: al cargar, llama a `consultarUltimoCodigo()` de
 - La única dependencia de la GUI es la lógica de negocio del cliente
   (`frontend_business_logic`).
 
-## 3. Reglas Generales
+## 3. General Rules (Reglas Generales)
 
 - **Lenguaje de programación:** HTML + CSS + JavaScript (navegador).
 - **Encabezados:** las funciones JavaScript de la GUI llevan un bloque de comentario
