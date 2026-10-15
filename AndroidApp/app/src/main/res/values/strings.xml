@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Beacon</string>
+
+    <string name="btn_escanear">Escanear</string>
+    <string name="btn_detener">Detener</string>
+
+    <string name="estado">Estado: %1$s</string>
+    <string name="estado_inicial">Estado: INACTIVO</string>
+    <string name="sin_valor">Sin valor detectado</string>
+    <string name="valor_detectado">Valor detectado: %1$d</string>
+    <string name="esperando_beacon">Esperando al beacon…</string>
+    <string name="codigo_enviado">Código enviado al servidor</string>
+    <string name="error_envio">Error: %1$s</string>
+    <string name="no_se_pudo_escanear">No se pudo empezar a escanear (revisa permisos y Bluetooth)</string>
+</resources>
