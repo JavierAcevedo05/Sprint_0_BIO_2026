@@ -56,7 +56,7 @@ function consultarUltimoCodigo( cb ) {
 			return;
 		}
 
-		// ¿el servidor devuelve error?
+		// ¿el servidor devuelve error? (error = 0 significa que fue bien)
 		if ( resultado.error != 0 ) {
 			cb( resultado.error, null );
 			return;

@@ -19,7 +19,8 @@ require_once __DIR__ . "/../business_logic/consultarUltimoCodigo.php";
 
 header("Content-Type: application/json; charset=utf-8");
 
-// recoge los parámetros (ninguno), llama a la lógica y devuelve JSON
+// no hay parámetros: llama a la lógica y devuelve el JSON tal cual
+// (la lógica ya rellena valor, fecha y el campo error)
 $objetoResultado = consultarUltimoCodigo();
 
 echo json_encode($objetoResultado);

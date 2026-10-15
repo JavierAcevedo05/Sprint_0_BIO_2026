@@ -25,7 +25,9 @@ function guardarCodigo($valor) {
         return false;
     }
 
-    // lo inserta en la tabla con fecha = ahora
+    // lo inserta en la tabla con fecha = ahora.
+    // se usa una sentencia preparada para evitar inyección SQL;
+    // la "i" de bind_param indica que el valor es un entero.
     $conexion = getConexion();
 
     $sentencia = $conexion->prepare(

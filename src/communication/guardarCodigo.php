@@ -20,6 +20,7 @@ header("Content-Type: application/json; charset=utf-8");
 $objetoResultado = new stdClass;
 
 // 1. recoge los parámetros
+// php://input es el cuerpo (body) en crudo de la petición POST
 $cuerpo = file_get_contents("php://input");
 $datos = json_decode($cuerpo, true);
 

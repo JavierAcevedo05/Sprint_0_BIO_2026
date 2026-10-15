@@ -17,11 +17,12 @@ function consultarUltimoCodigo() {
 
     $conexion = getConexion();
 
+    // el último código es la fila con el id más alto
     $resultado = $conexion->query(
         "SELECT valor, fecha FROM CODIGO ORDER BY id DESC LIMIT 1"
     );
 
-    // ¿hay fila?
+    // ¿hay fila? (si la tabla está vacía no hay nada que devolver)
     if ($resultado === false || $resultado->num_rows == 0) {
         $objetoResultado->error = "no hay códigos guardados";
         $conexion->close();
@@ -30,6 +31,7 @@ function consultarUltimoCodigo() {
 
     $fila = $resultado->fetch_assoc();
 
+    // devolvemos el código y su fecha; error = 0 indica que fue bien
     $objetoResultado->valor = (int) $fila["valor"];
     $objetoResultado->fecha = $fila["fecha"];
     $objetoResultado->error = 0;
